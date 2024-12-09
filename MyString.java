@@ -8,7 +8,15 @@ public class MyString {
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
-        //// Put your other tests here.
+        System.out.println("my tests");
+        System.out.println(subsetOf("the", "tothe")); //true
+        System.out.println(subsetOf("tha", "tothe")); // false
+        System.out.println(subsetOf("them", "tothe")); // false
+        System.out.println(subsetOf("them", "mtothe")); // true
+        System.out.println(randomStringOfLetters(20));
+        System.out.println(remove("hello", "hel")); //lo
+        System.out.println(remove("hello", "el")); //hlo
+        System.out.println(remove("hello", "ho")); //ell
     }
 
     /**
@@ -20,8 +28,13 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int counter = 0;
+        for (int i =0; i < str.length(); i++){
+            if (str.charAt(i) == ch){
+                counter ++;
+            }
+        }
+        return counter;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,8 +49,34 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+        if (str1.length() == 0){
+            return true;
+        }
+
+        if (str2.length() == 0){
+            return false;
+        }
+
+        if (str2.length() < str1.length()){
+            return false;
+        }
+
+        String charEraser = "";
+        String newStr2 = str2;
+        for (int i = 0; i < str1.length(); i++){
+            int indexStr = newStr2.indexOf(str1.charAt(i));
+            if (indexStr == -1){
+                return false;
+            }
+            for (int j = 0; j < newStr2.length(); j ++){
+                if (indexStr != j){
+                    charEraser = charEraser + newStr2.charAt(j);
+                }
+            }
+            newStr2 = charEraser;
+            charEraser = "";
+        }
+        return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -49,8 +88,16 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        if (str.length() == 0){
+            return "";
+        }
+        
+        String spaceStr = "";
+        for (int i = 0; i < str.length() -1; i ++){
+            spaceStr = spaceStr + str.charAt(i) + " ";
+        }
+        spaceStr = spaceStr + str.charAt(str.length() - 1);
+        return spaceStr;
     }
   
     /**
@@ -64,8 +111,13 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        String randomStr = "";
+        int randomNum = 0;
+        for (int i = 0; i < n; i++){
+            randomNum = (int) (Math.random() * 26);
+            randomStr = randomStr + (char)('a' + randomNum);
+        }
+        return randomStr;
     }
 
     /**
@@ -78,10 +130,26 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        String strRemove = str1;
+        
+        for (int i = 0; i < str2.length(); i ++){
+            int indexStr = strRemove.indexOf(str2.charAt(i));
+            strRemove = eraser(strRemove, indexStr);        
+            }
+
+        return strRemove;
     }
 
+    //returns a String without a charachter in a certain index 
+        public static String eraser (String str, int indexToErse){
+            String newStr = "";
+            for (int i = 0; i < str.length(); i++){
+                if (indexToErse != i){
+                    newStr += str.charAt(i);
+                }
+            }
+            return newStr;
+        }
     /**
      * Returns a string consisting of the given string, with the given 
      * character inserted randomly somewhere in the string.
