@@ -116,13 +116,13 @@ public class Scrabble {
 				break;
 			}
 
-			if (!isWordInDictionary(input)){
-				System.out.println("No such word in the dictionary. Try again.");
+			if (MyString.subsetOf(input, hand)){
+				System.out.println("Invalid word. Try again.");
 				continue;
 			}
 
-			if (MyString.subsetOf(input, hand)){
-				System.out.println("Invalid word. Try again.");
+			if (!isWordInDictionary(input)){
+				System.out.println("No such word in the dictionary. Try again.");
 				continue;
 			}
 
@@ -130,12 +130,15 @@ public class Scrabble {
 			int currentScore = wordScore(input);
 			score += currentScore;
 			System.out.println(input + " earned " + currentScore + " points. Score: " + score + " points");
+			System.out.println("");
 		}
 
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
+			System.out.println("");
 		} else {
 			System.out.println("End of hand. Total score: " + score + " points");
+			System.out.println("");
 		}
 	}
 
