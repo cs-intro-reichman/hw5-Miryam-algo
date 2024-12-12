@@ -151,7 +151,7 @@ public class Scrabble {
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
 
-			if (!input.equals("n") || !input.equals("e")){
+			if (!input.equals("n") && !input.equals("e")){
 				continue;
 			}
 
@@ -169,8 +169,8 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		testPlayHands();
-		////playGame();
+		///testPlayHands();
+		playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
