@@ -116,30 +116,25 @@ public class Scrabble {
 				break;
 			}
 
-			if (MyString.subsetOf(input, hand)){
+			if (!MyString.subsetOf(input, hand)){
 				System.out.println("Invalid word. Try again.");
-				continue;
-			}
-
-			if (!isWordInDictionary(input)){
+			} else if (!isWordInDictionary(input)) {
 				System.out.println("No such word in the dictionary. Try again.");
-				continue;
-			}
-
-			hand = MyString.remove(hand, input);
-			int currentScore = wordScore(input);
-			score += currentScore;
-			System.out.println(input + " earned " + currentScore + " points. Score: " + score + " points");
-			System.out.println("");
-		}
-
-		if (hand.length() == 0) {
-	        System.out.println("Ran out of letters. Total score: " + score + " points");
-			System.out.println("");
-		} else {
-			System.out.println("End of hand. Total score: " + score + " points");
+				}	else {
+					hand = MyString.remove(hand, input);
+					int currentScore = wordScore(input);
+					score += currentScore;
+					System.out.println(input + " earned " + currentScore + " points. Score: " + score + " points");
+					System.out.println("");
 		}
 	}
+	if (hand.length() == 0) {
+		System.out.println("Ran out of letters. Total score: " + score + " points");
+		System.out.println("");
+	} else {
+		System.out.println("End of hand. Total score: " + score + " points");
+	}
+}
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
@@ -174,7 +169,7 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		////testPlayHands();
+		testPlayHands();
 		////playGame();
 	}
 
@@ -201,7 +196,7 @@ public class Scrabble {
 	}
 	public static void testPlayHands() {
 		init();
-		//playHand("ocostrza");
+		playHand("ocostrza");
 		//playHand("arbffip");
 		//playHand("aretiin");
 	}
